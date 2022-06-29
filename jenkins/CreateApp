@@ -14,6 +14,7 @@ pipeline {
         string(name: 'origin_server_port', defaultValue: '443', description: 'Your server supports https port')
 
         booleanParam(name: 'cdn', defaultValue: false, description: 'Enable cdn')
+        booleanParam(name: 'continent_cdn', defaultValue: false, description: 'Enable continent_cdn')
         booleanParam(name: 'block', defaultValue: false, description: 'Block status')
         string(name: 'template', defaultValue: '', description: 'If you would like to bind one template, please specify it')
 
@@ -30,7 +31,7 @@ pipeline {
             }
             steps {
                 script {
-                    def paras = "-u ${params.user} -p ${params.password} -d ${params.domain_name} -a ${params.application_name} -S ${params.origin_server_service} -D ${params.origin_server_port}  -s ${params.origin_server_ip} -t ${params.http} -P ${params.https} -g ${params.cdn} -b ${params.block}"
+                    def paras = "-u ${params.user} -p ${params.password} -d ${params.domain_name} -a ${params.application_name} -S ${params.origin_server_service} -D ${params.origin_server_port}  -s ${params.origin_server_ip} -t ${params.http} -P ${params.https} -g ${params.cdn} -c ${params.continent_cdn} -b ${params.block}"
 
                     if ("${params.extra_domains}" != "") {
                        paras = paras + " -e ${params.extra_domains}"

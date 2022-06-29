@@ -14,7 +14,8 @@ def getOptions(args=sys.argv[1:]):
     parser.add_argument("-a", "--app", help="APP Name")
     parser.add_argument("-t", "--http", type=int, default=80, help="HTTP Port")
     parser.add_argument("-P", "--https", type=int, default=443, help="HTTPS Port")
-    parser.add_argument("-g", "--cdn", default="False", help="Global CDN Status")
+    parser.add_argument("-g", "--cdn", default="False", help="CDN Status")
+    parser.add_argument("-c", "--continent_cdn", default="False", help="Continent CDN Status")
     parser.add_argument("-b", "--block", default="False", help="Block Status")
     parser.add_argument("-T", "--Template", default="", help="Template Name")
 
@@ -45,6 +46,13 @@ def getOptions(args=sys.argv[1:]):
         data["cdn"] = False
     else:
         data["cdn"] = True
+
+    continent_cdn = str(options.continent_cdn)
+    if continent_cdn.lower() == "false":
+        data["continent_cdn"] = False
+    else:
+        data["continent_cdn"] = True
+
 
     block = str(options.block)
     if block.lower() == "false":
