@@ -46,6 +46,12 @@ def getOptions(args=sys.argv[1:]):
         data["cdn"] = False
     else:
         data["cdn"] = True
+        continent_cdn = str(options.continent_cdn)
+        if continent_cdn.lower() == "false":
+            data["continent_cdn"] = False
+        else:
+            data["continent_cdn"] = True
+
 
     continent_cdn = str(options.continent_cdn)
     if continent_cdn.lower() == "false":

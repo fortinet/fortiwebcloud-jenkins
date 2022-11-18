@@ -22,6 +22,11 @@ class AppCreate(RequestBase):
                           "head_status_code": test_result.get("head_status_code", 200)})
         if data.get("cdn"):
             api_data["cdn_status"] = 1
+            if data.get("continent_cdn"):
+                api_data["is_global_cdn"] = 0
+                api_data["continent"] = region.get("cluster").get("continent")
+            else:
+                api_data["is_global_cdn"] = 1
         else:
             api_data["cdn_status"] = 0
             api_data["server_country"] = region.get("location")
